@@ -1,5 +1,7 @@
 package ec.ups.edu.appdis.g1.parqueadero.negocio;
 
+import java.sql.SQLException;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -24,7 +26,12 @@ public class GestionTicketON {
 		return null;
 	}
 	public boolean registrarCliente(Cliente cliente) {
-		//daoCliente.insert(cliente);
+		try {
+			daoCliente.insert(cliente);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 }
