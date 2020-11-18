@@ -33,15 +33,30 @@ public class ClienteDAO {
 		return true;
 	}
 
-	public boolean update(Cliente entity) {
+	public boolean update(Cliente entity) throws SQLException {
+		String sql = "Update Cliente (email, nombre, tipoDocumento) VALUES(?,?,?,?) where dni="+entity.getDni();
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, entity.getEmail());
+		ps.setString(2, entity.getNombre());
+		ps.setInt(3, entity.getTipoDocumento());
+		ps.executeUpdate();
+		ps.close();
 		return true;
 	}
 
-	public Cliente read(int id) {
+	public Cliente read(int id) throws SQLException {
+		String sql = "SELECT * FROM Cliente where dni="+id;
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+		ps.close();
 		return null;
 	}
 
-	public boolean delete(int id) {
+	public boolean delete(int id) throws SQLException {
+		String sql = "DELETE FROM Cliente WHERE dni = "+id;
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+		ps.close();
 		return true;
 	}
 }
