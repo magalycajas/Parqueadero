@@ -34,7 +34,7 @@ public class ClienteDAO {
 	}
 
 	public boolean update(Cliente entity) throws SQLException {
-		String sql = "Update Cliente (email, nombre, tipoDocumento) VALUES(?,?,?,?) where dni="+entity.getDni();
+		String sql = "Update Cliente (email, nombre, tipoDocumento) VALUES(?,?,?,?) where dni=" + entity.getDni();
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, entity.getEmail());
 		ps.setString(2, entity.getNombre());
@@ -45,7 +45,7 @@ public class ClienteDAO {
 	}
 
 	public Cliente read(int id) throws SQLException {
-		String sql = "SELECT * FROM Cliente where dni="+id;
+		String sql = "SELECT * FROM Cliente where dni=" + id;
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.executeUpdate();
 		ps.close();
@@ -53,7 +53,7 @@ public class ClienteDAO {
 	}
 
 	public boolean delete(int id) throws SQLException {
-		String sql = "DELETE FROM Cliente WHERE dni = "+id;
+		String sql = "DELETE FROM Cliente WHERE dni = " + id;
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.executeUpdate();
 		ps.close();
