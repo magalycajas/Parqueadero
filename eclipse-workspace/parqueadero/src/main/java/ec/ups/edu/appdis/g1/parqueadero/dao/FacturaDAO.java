@@ -5,7 +5,7 @@ import ec.ups.edu.appdis.g1.parqueadero.modelo.Factura;
 public class FacturaDAO {
 	public boolean insert(Factura entity) {
 		
-		
+		String
 		
 		return true;
 	}
