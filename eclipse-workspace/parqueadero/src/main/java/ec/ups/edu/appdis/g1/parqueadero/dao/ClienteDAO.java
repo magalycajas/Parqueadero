@@ -2,6 +2,7 @@ package ec.ups.edu.appdis.g1.parqueadero.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.ejb.Stateless;
@@ -16,6 +17,8 @@ public class ClienteDAO {
 	@Inject
 	private Connection con;
 
+	private Cliente cliente;
+	
 	public ClienteDAO() {
 
 	}
@@ -45,10 +48,24 @@ public class ClienteDAO {
 	}
 
 	public Cliente read(int id) throws SQLException {
-		String sql = "SELECT * FROM Cliente where dni=" + id;
+		/*String sql = "SELECT * FROM Cliente where dni=" + id;
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.executeUpdate();
-		ps.close();
+		ps.close();*/
+		
+		
+		String sql="SELECT * FROM Cliente WHERE dni=?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet result = ps.executeQuery();
+		while (result.next()) {
+			cliente.setDni(result.getString(1));
+			cliente.setEmail(result.getString(2));
+			cliente.setNombre(result.getString(3));
+			cliente.setTipoDocumento(result.getInt(4));
+			return cliente;
+		}
+		
 		return null;
 	}
 
