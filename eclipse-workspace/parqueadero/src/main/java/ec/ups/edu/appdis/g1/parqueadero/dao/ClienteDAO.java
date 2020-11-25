@@ -35,7 +35,7 @@ public class ClienteDAO {
 	}
 
 	public boolean update(Cliente entity) throws SQLException {
-		String sql = "Update Factura (fechaEmision, valorTotal, Ticket, cliente) VALUES(?,?,?,?) where cedula=" + entity.getDni();
+		String sql = "Update Cliente (email, nombre, tipoDocumento) VALUES(?,?,?,?) where dni=" + entity.getDni();
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, entity.getEmail());
 		ps.setString(2, entity.getNombre());

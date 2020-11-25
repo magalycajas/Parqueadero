@@ -1,6 +1,13 @@
 package ec.ups.edu.appdis.g1.parqueadero.dao;
 
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Factura;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Ticket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +20,6 @@ import java.util.Date;
 
 public class TicketDAO {
 	
-
 	@Inject
 	private Connection con;
 	
@@ -65,5 +71,6 @@ public class TicketDAO {
 		ps.close();
 		return true;
 	}
+
 	
 }

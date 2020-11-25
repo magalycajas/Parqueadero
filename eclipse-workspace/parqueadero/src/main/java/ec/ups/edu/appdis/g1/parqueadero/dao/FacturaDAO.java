@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Factura;
+
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Ticket;
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Cliente;
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Vehiculo;
@@ -18,6 +19,7 @@ public class FacturaDAO {
 	@Inject
 	private Connection con;
 	
+
 	public FacturaDAO() {
 
 	}
@@ -27,6 +29,7 @@ public class FacturaDAO {
 
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, entity.getNumero());
+
 		ps.setDate(2, (java.sql.Date)entity.getFechaEmision());
 		ps.setDouble(3, entity.getValorTotal());
 		ps.setString(4, null);
@@ -39,6 +42,7 @@ public class FacturaDAO {
 	public boolean update(Factura entity) throws SQLException {
 		String sql = "Update Factura (fechaEmision, valorTotal, Ticket, cliente) VALUES(?,?,?,?) where numero=" + entity.getNumero();
 		PreparedStatement ps = con.prepareStatement(sql);
+
 		ps.setDate(2, (java.sql.Date)entity.getFechaEmision());
 		ps.setDouble(3, entity.getValorTotal());
 		ps.setString(4, null);
