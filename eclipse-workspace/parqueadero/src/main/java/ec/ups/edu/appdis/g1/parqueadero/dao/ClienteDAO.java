@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.ups.edu.appdis.g1.parqueadero.modelo.Cliente;
+import ec.ups.edu.appdis.g1.parqueadero.modelo.Factura;
 
 @Stateless
 
@@ -33,15 +34,30 @@ public class ClienteDAO {
 		return true;
 	}
 
-	public boolean update(Cliente entity) {
+	public boolean update(Cliente entity) throws SQLException {
+		String sql = "Update Factura (fechaEmision, valorTotal, Ticket, cliente) VALUES(?,?,?,?) where cedula=" + entity.getDni();
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, entity.getEmail());
+		ps.setString(2, entity.getNombre());
+		ps.setInt(3, entity.getTipoDocumento());
+		ps.executeUpdate();
+		ps.close();
 		return true;
 	}
 
-	public Cliente read(int id) {
+	public Cliente read(String cedula) throws SQLException {
+		String sql = "SELECT * FROM Cliente where cedula=" + cedula;
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+		ps.close();
 		return null;
 	}
 
-	public boolean delete(int id) {
+	public boolean delete(String cedula) throws SQLException {
+		String sql = "DELETE FROM Cliente WHERE cedula = " + cedula;
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+		ps.close();
 		return true;
 	}
 }
